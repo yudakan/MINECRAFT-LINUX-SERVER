@@ -1,0 +1,15 @@
+[Unit]
+Description=Minecraft Server on tmux
+After=ddns.service
+
+[Service]
+WorkingDirectory=/srv/minecraft-server/
+Type=simple
+User=yka
+Group=yka
+ExecStart=/srv/minecraft-server/minecraft-tmux.sh start wait
+ExecStop=/srv/minecraft-server/minecraft-tmux.sh stop
+ExecStopPost=/srv/minecraft-server/minecraft-tmux.sh backup "minecraft@HOST -pPORT" "/home/minecraft/minecraft-server-buckup.zip"
+
+[Install]
+WantedBy=multi-user.target

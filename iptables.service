@@ -1,0 +1,11 @@
+[Unit]
+Description=Iptables Rules
+After=systemd-sysctl.service
+
+[Service]
+Type=oneshot
+ExecStart=/sbin/iptables-restore /etc/iptables/rules.v4
+ExecStart=/sbin/ip6tables-restore /etc/iptables/rules.v6
+
+[Install]
+WantedBy=multi-user.target
